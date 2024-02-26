@@ -96,6 +96,7 @@ def displayResult(num, res):
     print(f"\nQ{num}:\n{str(res)}\n{repr(res)}\n{type(res)}\n\n")
 
 
+# flask --app fl08_model.py initdb
 @app.cli.command("initdb")
 def initdb_command():
     """Reinitializes the database"""
@@ -137,6 +138,7 @@ def initdb_command():
     print("Initialized the database.")
 
 
+# flask --app fl08_model.py check
 @app.cli.command("check")
 def default():
     """Demonstrates model queries and relationships"""
@@ -144,7 +146,7 @@ def default():
 
     stmt = db.select(User).where(User.username == "peter")
 
-    # Returns a User
+    # Returns a User, as in the actual User class object in Python
     displayResult(
         1,
         db.session.execute(stmt).scalar()
