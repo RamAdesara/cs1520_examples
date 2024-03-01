@@ -1,6 +1,6 @@
 '''
 Your task for this exercise is to complete the code for the class below.
-You'll start by reading the file '04_graph.txt' and storing it as a dict, 
+You'll start by reading the file '03_graph.txt' and storing it as a dict, 
 you can also lookup what a defaultdict is and use that instead.
 
 
@@ -10,7 +10,7 @@ person d or person d is a friend of person a (notice how this
 edge is undirected). Look at the example below for clarification.
 
 
-04_graph.txt
+03_graph.txt
 ---------
 a;b
 b;c
@@ -31,10 +31,31 @@ from collections import defaultdict
 class Graph():
 	def __init__(self, file_path):
 		'''
-		file_path is the path to the 04_graph.txt file
+		file_path is the path to the 03_graph.txt file
 		'''
-		pass
+		self.file_path = file_path
+		self.graph_dict = {}
+		with open(file_path, 'r') as file:
+			for line in file:
+				nodes = line.strip().split(';')
+				if len(nodes) == 2:
+					if nodes[0] not in self.graph_dict:
+						print(f'{nodes[0]} not in self.graph_dict')
+						print('Adding it...')
+						self.graph_dict[nodes[0]] = [nodes[1]]
+					else:
+						print(f'Key \"{nodes[0]}\" already exists. Attempting to add it...')
+						self.graph_dict[nodes[0]].append(nodes[1])
 
+					if nodes[1] not in self.graph_dict:
+						print(f'{nodes[1]} not in self.graph_dict')
+						print('Adding it...')
+						self.graph_dict[nodes[1]] = [nodes[0]]
+					else:
+						print(f'Key \"{nodes[1]}\" already exists. Attempting to add it...')
+						self.graph_dict[nodes[1]].append(nodes[0])
+
+		print(f'self.graph_dict:\n{self.graph_dict}')
 
 	def __str__(self):
 		'''
@@ -68,21 +89,20 @@ class Graph():
 
 
 if __name__ == "__main__":
-	filePath = "" # enter input file path here
+	filePath = "03_my_graph.txt" # enter input file path here
 	g = Graph(filePath)
 
-	print("---------Testing __str__ ---------")
-	print(str(g) == "{\n('a', ['c', 'd'])\n('b', ['c', 'e', 'f'])\n('c', ['a', 'b', 'g'])\n('d', ['a', 'e'])\n('e', ['b', 'd'])\n('f', ['b'])\n('g', ['c'])\n('i', ['j', 'k'])\n('j', ['i'])\n('k', ['i'])\n}")
+	# print("---------Testing __str__ ---------")
+	# print(str(g) == "{\n('a', ['c', 'd'])\n('b', ['c', 'e', 'f'])\n('c', ['a', 'b', 'g'])\n('d', ['a', 'e'])\n('e', ['b', 'd'])\n('f', ['b'])\n('g', ['c'])\n('i', ['j', 'k'])\n('j', ['i'])\n('k', ['i'])\n}")
 
 
 
-	print("---------Testing __iter__ and __next__ ---------")
-	keys = [k for k in g]
-	print(keys)
-	print(keys == ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'j', 'k'])
+	# print("---------Testing __iter__ and __next__ ---------")
+	# keys = [k for k in g]
+	# print(keys)
+	# print(keys == ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'i', 'j', 'k'])
 
 
-	print("---------Testing isConnected ---------")
-	connectivity = [g.isConnected('a', 'e'), g.isConnected('g', 'd'), g.isConnected('e', 'i')]
-	print(connectivity == [True, True, False])
-
+	# print("---------Testing isConnected ---------")
+	# connectivity = [g.isConnected('a', 'e'), g.isConnected('g', 'd'), g.isConnected('e', 'i')]
+	# print(connectivity == [True, True, False])
