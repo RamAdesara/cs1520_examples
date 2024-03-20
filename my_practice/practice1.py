@@ -1,5 +1,10 @@
-a_dict = {1:'one', 2:'two', 3:'three'}
-list_of_tups = sorted(a_dict.items(), key=lambda t: t[1])
+def squares():
+    n = 2
+    while True:
+        yield n
+        n = n * 2
 
-for i in list_of_tups:
-    print(i)
+for s in squares():
+    print(f"{s} squared is ", end="")
+    if s > 500:
+        break
