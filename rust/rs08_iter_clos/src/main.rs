@@ -7,7 +7,9 @@ fn main() {
 		String::from("c"),
 	];
 
-	let big_strings: Vec<_> = strings.iter().filter(|x| x.len() > 5).collect();
+	let big_strings: Vec<_> = strings.iter()
+		.filter(|x| x.len() > 5)
+		.collect();
 
 	println!("Big strings:");
 	for s in big_strings.iter() {
