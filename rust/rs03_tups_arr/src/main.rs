@@ -12,8 +12,8 @@ fn main() {
 
 	// Handy way to check a type:
 	// Attempt assignment to a known wrong type and check the compiler error
-	//let i: char = z;
-	//let j: char = tup2.2;
+	// let i: char = z;
+	// let j: char = tup2.2;
 
 	// Arrays
 	let arr1: [i32; 5] = [1, 2, 3, 4, 5];
@@ -27,5 +27,5 @@ fn main() {
 
 	// Out-of-bounds access will panic at runtime
 	// By default, compiler will try to warn of this when it can
-	//println!("arr2[5]: {}", arr2[5]);
+	// println!("arr2[5]: {}", arr2[5]);
 }

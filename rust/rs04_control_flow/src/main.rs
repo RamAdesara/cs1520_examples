@@ -44,6 +44,11 @@ fn main() {
 		println!("In for, i: {}", i);
 	}
 
+	// for
+	for i in 5..=10 {
+		println!("In for (inclusive), i: {}", i);
+	}
+
 	// loop
 	let mut n = 6;
 	let m = loop {

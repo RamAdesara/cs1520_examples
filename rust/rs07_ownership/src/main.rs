@@ -113,7 +113,7 @@ fn main() {
 	mbu.identify();
 	// With vthisv line commented out, Rust will drop `bu` so that there is
 	// not both a mutable and immutable borrow, given the `bu` isn't needed
-	//bu.identify();
+	// bu.identify();
 
 	// Can explicitly do something similar with set scopes via blocks
 	let mut v = Rectangle::new(Point(0, 0), 8, 8);
@@ -151,6 +151,9 @@ fn main() {
 		let q = String::from("also short");
 		z = longest(&n, &q);
 	}
+
+	// NOTICE HOW q DIES!!!
+
 	// Adding this line will be a compilation error because `q` does not
 	// live as long as `z` would. Without this line, `z` can be dropped when
 	// `q` is
@@ -165,6 +168,7 @@ fn main() {
 
 	// But this does not?
 	let c = 42;
+	// Value implements the copy trait
 	let d = c;
 	println!("c: {}", c);
 	println!("d: {}", d);
