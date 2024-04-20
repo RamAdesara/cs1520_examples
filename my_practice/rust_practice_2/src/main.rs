@@ -15,23 +15,24 @@ fn maybe_get_color() -> Option<Color> {
 
 	println!("Generated: {}", chance);
 
-	match {
-		0..=24 => Some(Color::Red),
+	// match is an expression
+	match chance {
+		0..=24 => Some(Color::Red), // Option::Some, but included by default
 		25..=49 => Some(Color::Green),
 		50..=74 => Some(Color::Blue),
-		_ => None,
+		_ => None,    // Option::None, but included by default
 	}
 }
 
 fn main() {
-	let maybe_col = maybe_get_color();
-	match maybe_col {
-		// Can provide a pattern to match and destructure the Option returned
-		Some(c) => match c {
-			Color::Red => println!("Got red!"),
-			Color::Green => println!("Got green!"),
-			Color::Blue => println!("Got blue!"),
-		},
-		None => println!("Got nothing :("),
-	}
+	let l = "this is a string literal";	
+	let m = &l[10..13];
+	println!("l: {}", l);
+	println!("m: {}", m);
+
+	let h10 = Box::new(10);
+	*h10;
+
+	super::nested_a::hi();
+	crate::nester::nested_b::hi();
 }
